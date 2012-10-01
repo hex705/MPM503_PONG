@@ -84,7 +84,7 @@ class Pong{
    checkForHit();
    checkForWin();
  
-  drawScore();
+   drawScore();
    
  } // end update
   
@@ -114,22 +114,24 @@ void checkForHit(){
    
    
     if (f.ball.locX-f.ball.ballSize/2  <= player[1].x) {
-      println("on goal line");
       
       if (player[1].hitTheBall(f.ball.locY, f.ball.ballSize) ) {
-        f.ball.velX *= -1.3;
+        f.ball.velX *= -1.1;
       } else {
         f.ball.locX = -5;
+         goal(f.ball.velX);  // used to be in ball
       }
    }
      
    if (players == 2) {
+     
      if (f.ball.locX+f.ball.ballSize/2 >=player[2].x) {
        
         if (player[2].hitTheBall(f.ball.locY, f.ball.ballSize) ) {
-          f.ball.velX *= -1.3;
+          f.ball.velX *= -1.1;
         } else {
         f.ball.locX = width +5;
+        goal(f.ball.velX); // used to be in ball. 
       }
         
      }

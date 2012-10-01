@@ -44,9 +44,9 @@ class Ball{
      
      // check for on goal line
      
-     if ((locX < -ballSize/2) || (locX > width+ballSize/2)) {
-       p.goal(velX);
-     }
+    // if ((locX < - ballSize/2) || (locX > width+ballSize/2)) {
+       //p.goal(velX);
+    // }
     
 
   }// end check

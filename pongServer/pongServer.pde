@@ -1,5 +1,9 @@
 // pong v1.0
-// Nov 26, 2011
+// Sept 29, 2012
+
+// add better check for hit.
+
+
 
 //import processing.serial.*;
 // import
