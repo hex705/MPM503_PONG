@@ -17,12 +17,14 @@ class Field{
     
    void update(){
      
-    
      drawField();
-     
+     if (numberPlayers == 2 ) {
      drawNet();
+     }
       
-      if (STATE != 8 && STATE != 0 && STATE != 9 ){ ball.update();}
+      if (STATE != 8 && STATE != 0 && STATE != 9 ){ 
+        ball.update();
+      }
      
    }
    

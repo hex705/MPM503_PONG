@@ -11,7 +11,7 @@ class Ball{
     
     locX = (int)random(0,width);
     locY = (int)random(0,height);
-    velX = -0.1;
+    velX = 100;
     velY =  1;
 
   } // end constructor
@@ -19,12 +19,13 @@ class Ball{
  
   
   void update(){
-     move();     // method in Ball class
+   // println("Ball update");
+     moveBall();     // method in Ball class
      check();
      display();   
   }
   
-  void move(){
+  void moveBall(){
     
     locX += velX;
     locY += velY;
@@ -40,6 +41,8 @@ class Ball{
        velY *= -1;
        
      }
+     
+     // check for on goal line
      
      if ((locX < -ballSize/2) || (locX > width+ballSize/2)) {
        p.goal(velX);

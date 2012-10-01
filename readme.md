@@ -80,13 +80,27 @@ If your system is ANALOG (as explained above) then you need to send the sensor v
 	
 
 
+One player or Two?
+=================
+
+While you are developing your controller you can choose the single player version.
+ 
+When asked how many players, select 1 by making sure PONG is the focus window and then press <1>.
+	
+Now, connect your client -- PONG will wait for you.
+
+Once you connect -- select your skill level.  We will play at skill level 1 in class.  Press 1, 2 or 3  -- and game will begin.
 
 
+Notes:
+======
 
-Note:
------
+
+The code needs to be refactored -- so don;t look at it as a good implementation -- the point of this exercise is your controller -- not my messy code. 
 
 Depending on how fast our network connections are, you may be asked to add a delay in your client.
+
+
 
 HINT: faster baud will likely improve the responsiveness of your system -- i suggest 19200
 

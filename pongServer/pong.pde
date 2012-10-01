@@ -17,34 +17,27 @@ class Pong{
     
     
     Pong(int _p){
+      
       players = _p;
       f = new Field( players,1 );
       player = new Player[3];
       
       player[1] = new Player(1, skillLevel);
-     if (players == 2) {
+     
+      if (players == 2) {
           player[2] = new Player(2, skillLevel);
       }
       
       gameReset();
       
-     
-      
       println("Game inititalized");
       
     }// end constructor
 
-  void gameInit(){
-    
-    
-    
-  }
-  
-  
-  
+ 
   void gameReset() {
     
-    for (int i = 1; i < players; i ++){
+    for (int i = 1; i <= players; i ++){
           player[i].score = 0;
     }
     
@@ -53,7 +46,7 @@ class Pong{
     f.drawField();
     f.drawNet();
     
-     for (int i = 1; i < players; i ++ ) {
+     for (int i = 1; i <= players; i ++ ) {
           player[i].update();
    
      }
@@ -67,17 +60,6 @@ class Pong{
     
     
     
-  }
-
-  void ballReset() {
-    
-    int lX = (lastPoint == 1) ? 30 : width-30;
-    f.ball.locX = lX;
-    f.ball.locY = player[lastPoint].y+10;
-
-    float vX = (lastPoint == 1) ? 1 : -1;
-    f.ball.velX = vX;
-    f.ball.velY = -1;    
   }
   
   void serve(){ 
@@ -94,7 +76,7 @@ class Pong{
    
    // update players
    for (int i = 1; i <=players; i ++ ) {
-   player[i].update();
+       player[i].update();
    }
    //player[2].update();
    
@@ -104,7 +86,6 @@ class Pong{
  
   drawScore();
    
-  // println("\tvelocity " + 
  } // end update
   
   void drawScore(){
@@ -130,26 +111,34 @@ void checkForHit(){
 
    // println("checking");
    
+   
+   
     if (f.ball.locX-f.ball.ballSize/2  <= player[1].x) {
       println("on goal line");
       
       if (player[1].hitTheBall(f.ball.locY, f.ball.ballSize) ) {
-        f.ball.velX *= -1.075;
-      } // end <=
+        f.ball.velX *= -1.3;
+      } else {
+        f.ball.locX = -5;
+      }
    }
-      
-    if (players == 2) {
+     
+   if (players == 2) {
      if (f.ball.locX+f.ball.ballSize/2 >=player[2].x) {
+       
         if (player[2].hitTheBall(f.ball.locY, f.ball.ballSize) ) {
-          f.ball.velX *= -1.075;
-        } // end >=
+          f.ball.velX *= -1.3;
+        } else {
+        f.ball.locX = width +5;
+      }
+        
      }
     }
     
     if (players == 1 ) {
      if (f.ball.locX +f.ball.ballSize/2 >= width - 10) {
       // hit side
-       f.ball.velX *= -1.075; 
+       f.ball.velX *= -1.3; 
     }
     }
             
@@ -158,7 +147,7 @@ void checkForHit(){
  
  void goal(float vel) {
    int pointGetter = 1; 
-   if (vel > 0 )  {
+   if (vel < 0  && players == 2 )  {
      pointGetter +=1; // if the ball was moving left then p 2 scored.
    }
     player[pointGetter].score+=1;
@@ -202,6 +191,17 @@ void checkForHit(){
       k = k - 48;
        
  }
+ 
+  void ballReset() {
+    println("last point " + lastPoint);
+    int ballX = (lastPoint == 1) ? 40 : width-40;
+    f.ball.locX = ballX;
+    f.ball.locY = player[lastPoint].y+10;
+
+    float vX = (lastPoint == 1) ? -2 : 2;
+    f.ball.velX = vX;
+    f.ball.velY = -0.5;    
+  }
    
  
  

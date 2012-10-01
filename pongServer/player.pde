@@ -14,7 +14,7 @@ class Player {
     skill = _skill*skillScale;
         println("skill in init " + skill);
     if (id == 1) {
-        x=31;
+        x=30;
       } else {
         x=(width-30);
     }
@@ -75,7 +75,8 @@ class Player {
   
   boolean hitTheBall(float ballY, int bSize) {
     boolean hit = false;
-    if ( (ballY+bSize/2 > y) && (ballY+bSize/2 < (y+skill) )) {
+   // if ( (ballY+bSize/2 > y) && (ballY+bSize/2 < (y+skill) )) {
+    if ( (ballY > y) && (ballY < (y+skill) )) {
       if (DEBUG) {
       println(" in player hittheball == yup its a hit");
       }
