@@ -57,7 +57,7 @@ void setup() {
   textFont ( scoreFont, 128);
 
 
-  p = new Pong(2);
+  p = new Pong(1);
 
   //String portName = Serial.list()[0];
   //myPort = new Serial(this, portName, 9600);
@@ -74,7 +74,7 @@ void draw() {
     fill(0);
     noStroke();
 
-    rect(190, 175, 400, 125);
+    rect(190, 175, 400, 75);
     fill(255, 0, 0);
 
     text ("How many players?", 220, 200);
@@ -99,7 +99,7 @@ void draw() {
       maintainScreen();
       displayWaitMessage();
       
-      if (playerCount == 2)  {STATE = INTRO;}
+      if (playerCount == p.players)  {STATE = INTRO;}
 
   break;
 
@@ -189,8 +189,10 @@ void maintainScreen() {
       
       checkForServerInput();
      
-      p.player[1].update();
-      p.player[2].update();
+      for (int i = 1; i <= p.players; i ++ ) {
+          p.player[i].update();
+      }
+  
       
       p.drawScore();
  

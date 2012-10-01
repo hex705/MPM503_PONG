@@ -11,7 +11,7 @@ class Ball{
     
     locX = (int)random(0,width);
     locY = (int)random(0,height);
-    velX = -0.00001;
+    velX = -0.1;
     velY =  1;
 
   } // end constructor

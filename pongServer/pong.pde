@@ -6,26 +6,26 @@ class Pong{
     PFont scoreFont;
 
     
-    int players = 0;
+    int players = 1;
     Player[] player;
     int skillLevel = 3;
     
     boolean serve = true;
-    int lastPoint;
+    int lastPoint = 1;
     int winner;
-    int maxScore = 1;
+    int maxScore = 3;
     
     
     Pong(int _p){
       players = _p;
       f = new Field( players,1 );
       player = new Player[3];
+      
       player[1] = new Player(1, skillLevel);
+     if (players == 2) {
+          player[2] = new Player(2, skillLevel);
+      }
       
-      player[2] = new Player(2, skillLevel);
-      
-      
-      lastPoint = 2;
       gameReset();
       
      
@@ -43,8 +43,9 @@ class Pong{
   
   
   void gameReset() {
+    
     for (int i = 1; i < players; i ++){
-    player[i].score = 0;
+          player[i].score = 0;
     }
     
     ballReset();
@@ -52,14 +53,19 @@ class Pong{
     f.drawField();
     f.drawNet();
     
-    player[1].update();
-    if (players ==2) {
-    player[2].update();
-    }
+     for (int i = 1; i < players; i ++ ) {
+          player[i].update();
+   
+     }
+    
     
     drawScore();
     
     STATE= 9;
+    
+    playerCount =0;
+    
+    
     
   }
 
@@ -87,8 +93,10 @@ class Pong{
    
    
    // update players
-   player[1].update();
-   player[2].update();
+   for (int i = 1; i <=players; i ++ ) {
+   player[i].update();
+   }
+   //player[2].update();
    
    // check score
    checkForHit();
@@ -103,14 +111,25 @@ class Pong{
       
 //textFont(scoreFont, 88);
      fill(255,0,0);
-     String s = ( player[1].getScore()  + " " + player[2].getScore());
-     text(s,205,105);
+     
+     if (players == 1) {
+     
+       String s = ("" + player[1].getScore() );
+       text(s,505,115);
+     
+     }
+     else if (players == 2) {
+ 
+       String s = ( player[1].getScore()  + " " + player[2].getScore());
+       text(s,205,105);
+     }
     
   }
 
 void checkForHit(){
 
    // println("checking");
+   
     if (f.ball.locX-f.ball.ballSize/2  <= player[1].x) {
       println("on goal line");
       
@@ -119,19 +138,27 @@ void checkForHit(){
       } // end <=
    }
       
-    
+    if (players == 2) {
      if (f.ball.locX+f.ball.ballSize/2 >=player[2].x) {
         if (player[2].hitTheBall(f.ball.locY, f.ball.ballSize) ) {
           f.ball.velX *= -1.075;
         } // end >=
      }
+    }
+    
+    if (players == 1 ) {
+     if (f.ball.locX +f.ball.ballSize/2 >= width - 10) {
+      // hit side
+       f.ball.velX *= -1.075; 
+    }
+    }
             
  } // end checkForGoal 
  
  
  void goal(float vel) {
    int pointGetter = 1; 
-   if (vel < 0 )  {
+   if (vel > 0 )  {
      pointGetter +=1; // if the ball was moving left then p 2 scored.
    }
     player[pointGetter].score+=1;
@@ -156,8 +183,10 @@ void checkForHit(){
  
  void setSkill( int i ) {
    println("\t\tsetting skill on pong ... " + (i-48));
-     player[1].setSkill(i-48);
-     player[2].setSkill(i-48);
+   for(int j = 1; j < players; j ++ ) {
+     player[j].setSkill(i-48);
+   }
+ 
      
  } // end set skill 
  
