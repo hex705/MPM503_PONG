@@ -13,7 +13,7 @@ Interfacing MPM503_PONG
 
 	  element[1]:  type String, content "DIGITAL"  or "ANALOG"
 
-	  element[3]:  type Int,    content "your_controller_value".
+	  element[2]:  type Int,    content "your_controller_value".
 
 
 ###element[0]
