@@ -1,6 +1,19 @@
 Interfacing MPM503_PONG
 =======================
 
+
+---
+
+NOTE -- when playing against self for development 
+
+SERVER IP will be local machine -->  "127.0.0.1"
+SEVER PORT is 12345   
+
+---
+
+
+
+
 1) The pong game interface is a **SERVER**.  You must connect to it at the **IP** and **PORT** given on game day.
 
 
