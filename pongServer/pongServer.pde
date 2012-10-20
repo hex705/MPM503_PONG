@@ -8,12 +8,12 @@
 //import processing.serial.*;
 // import
 import processing.net.*;
+
 Server pongServer;
 
 int serverPORT = 12345;
 
 Scissors pongScissors;  // new scissors object
-
 
 
 final int INTRO = 0;
@@ -45,14 +45,13 @@ int playerCount = 0;
 
 void setup() {
 
-  size(640, 480);
+  size(1024, 768);
   background(0);
 
   pongServer   = new Server  ( this, serverPORT );
   pongScissors = new Scissors( pongServer       );  // pongServer is the Stream 
 
-  String[] fontList = PFont.list();
- 
+  //String[] fontList = PFont.list();
 
 
   // http://www.fontpalace.com/font-download/OCR+A+Extended/
@@ -78,15 +77,15 @@ void draw() {
     fill(0);
     noStroke();
 
-    rect(190, 175, 400, 75);
+    rect(width/2-200, height/2-40, 400, 75);
     fill(255, 0, 0);
-
-    text ("How many players?", 220, 200);
+textAlign(CENTER,CENTER);
+    text ("How many players?", width/2, height/2);
     textFont ( scoreFont, 128);
 
-
+textAlign(CENTER,LEFT);
     if (keyPressed == true) { 
-      println("key " + key);
+      println("key " +  key);
       if (key > '0' && key < '3') {
         println("\t"+key);
 
@@ -210,13 +209,13 @@ void displayWaitMessage() {
   fill(0);
   noStroke();
 
-  rect(190, 175, 400, 100);
+  rect(width/2-100, height/2-50, 400, 150);
   fill(255, 0, 0);
 
-  text ("Waiting for players", 220, 200);
+  text ("Waiting for players", width/2, height/2+50);
   
   String cc = ( "\nCurrently " + playerCount + " connected.");
-  text ( cc , 210, 220);
+  text ( cc , width/2, 350);
   textFont ( scoreFont, 128);
   
   

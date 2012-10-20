@@ -96,13 +96,13 @@ class Pong{
      if (players == 1) {
      
        String s = ("" + player[1].getScore() );
-       text(s,505,115);
+       text(s,750,125);
      
      }
      else if (players == 2) {
  
-       String s = ( player[1].getScore()  + " " + player[2].getScore());
-       text(s,205,105);
+       String s = ( player[1].getScore()  + "     " + player[2].getScore());
+       text(s,width/2,125);
      }
     
   }
@@ -174,7 +174,9 @@ void checkForHit(){
  
  void setSkill( int i ) {
    println("\t\tsetting skill on pong ... " + (i-48));
-   for(int j = 1; j < players; j ++ ) {
+   
+   println("player %%%%%%%%%%%%%%%%% " + players);
+   for(int j = 1; j <= players; j ++ ) {
      player[j].setSkill(i-48);
    }
  
@@ -205,6 +207,28 @@ void checkForHit(){
     f.ball.velY = -0.5;    
   }
    
+   
+    
+  void softReset() {
+    
+    for (int i = 1; i <= players; i ++){
+          player[i].score = 0;
+    }
+    
+    ballReset();
+    
+    f.drawField();
+    f.drawNet();
+    
+     for (int i = 1; i <= players; i ++ ) {
+          player[i].update();
+   
+     }
+    
+    
+    drawScore();
+    delay(100);
+  }
  
  
 } // end game 
