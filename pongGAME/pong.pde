@@ -13,13 +13,13 @@ class Pong{
     boolean serve = true;
     int lastPoint = 1;
     int winner;
-    int maxScore = 3;
+    int maxScore = 2;
     
     
-    Pong(int _p){
-      
+    Pong(int _p, int _mS){
+      maxScore = _mS;
       players = _p;
-      f = new Field( players,1 );
+      f = new Field( players, 1 );
       player = new Player[3];
       
       player[1] = new Player(1, skillLevel);
@@ -56,7 +56,13 @@ class Pong{
     
     STATE= 9;
     
-    playerCount =0;
+    playerCount = 0;
+    playerIndex = -1;
+    playerMove = -1;
+    playerType = "";
+    
+    playerOneConnected = false;
+    playerTwoConnected = false;
     
     
     
@@ -68,8 +74,8 @@ class Pong{
   }
     
  void update(){
-  checkForKeyboardInput();
-  checkForServerInput();
+   checkForKeyboardInput();
+   //checkForServerInput();
    // update field
    f.update();
    
@@ -109,9 +115,7 @@ class Pong{
 
 void checkForHit(){
 
-   // println("checking");
-   
-   
+   // println("checking");   
    
     if (f.ball.locX-f.ball.ballSize/2  <= player[1].x) {
       
@@ -173,9 +177,10 @@ void checkForHit(){
     
  
  void setSkill( int i ) {
-   println("\t\tsetting skill on pong ... " + (i-48));
    
-   println("player %%%%%%%%%%%%%%%%% " + players);
+   println("\t\tsetting skill on pong ... " + (i-48));
+   println("player " + players);
+   
    for(int j = 1; j <= players; j ++ ) {
      player[j].setSkill(i-48);
    }
@@ -228,6 +233,10 @@ void checkForHit(){
     
     drawScore();
     delay(100);
+  }
+  
+  void setMaxScore( int _mS) {
+    maxScore = _mS; 
   }
  
  

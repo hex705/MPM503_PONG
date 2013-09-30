@@ -1,3 +1,6 @@
+
+// currently disabled
+
 void checkForKeyboardInput(){
 
   // check for input    

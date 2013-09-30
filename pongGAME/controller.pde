@@ -1,4 +1,8 @@
 
+// test tab to ensure serial connections could work -- but it  is
+// not written in OSC you will have to make the connection VIA inet
+
+
 //
 //Serial myPort;                       // The serial port
 //int[] serialInArray = new int[3];    // Where we'll put what we receive
